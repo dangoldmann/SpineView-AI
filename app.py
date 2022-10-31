@@ -1,15 +1,11 @@
-from email.mime import base
-from pyexpat import model
-from itsdangerous import base64_decode
+import json
 import numpy as np
-from flask import Flask, Response, request, jsonify, render_template
-import pickle
+from flask import Flask, Response, request, jsonify
 import requests
 from PIL import Image
 import io
 
 app = Flask(__name__)
-#model = pickle.load(open('model1.pkl', 'rb'))
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -18,8 +14,10 @@ def predict():
     base64_data = req.content
 
     image = Image.open(io.BytesIO(base64_data))
-    
-    print(image)
+
+    return jsonify({
+        'message': 'hola'
+    })
 
 
 if __name__ == '__main__':
