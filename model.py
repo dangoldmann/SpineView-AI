@@ -1,5 +1,3 @@
-!pip install https://raw.githubusercontent.com/ultralytics/yolov5/master/requirements.txt
-
 import torch
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')  # custom trained model
 
