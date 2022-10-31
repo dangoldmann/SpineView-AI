@@ -1,0 +1,18 @@
+names:
+- Disc space narrowing
+- Foraminal stenosis
+- Osteophytes
+- Other lesions
+- Spondylolysthesis
+- Surgical implant
+- Vertebral collapse
+nc: 7
+roboflow:
+  license: CC BY 4.0
+  project: asdd-xg5zz
+  url: https://universe.roboflow.com/project/asdd-xg5zz/dataset/1
+  version: 1
+  workspace: project
+test: ../test/images
+train: ASDD-1/train/images
+val: ASDD-1/valid/images
