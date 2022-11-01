@@ -7,8 +7,8 @@ from PIL import Image, ImageFile
 
 app = Flask(__name__)
 
-#apiUrl = 'http://localhost:3000'
-apiUrl = 'https://osia-api-production.up.railway.app'
+apiUrl = 'http://localhost:3000'
+#apiUrl = 'https://osia-api-production.up.railway.app'
 
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
 
@@ -24,18 +24,16 @@ def predict():
     im = Image.open(io.BytesIO(base64_data))
 
     results = model(im)
-    results.show()
+    results.save()
 
     image = Image.fromarray(results.ims[0])
     ImageFile.MAXBLOCK = 2**20
-    image.save('output.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    buf = io.BytesIO()
+    image.save(buf, 'JPEG', quality=80, optimize=True, progressive=True)
     image_jpg = 'output.jpg'
-    
-    image_base64 = base64.b64encode(image)
-    print(image_base64)
-    # return jsonify({
-    #     'outputImage': image_jpg
-    # })
+    byte_im = buf.getvalue()
+    image_base64 = base64.b64encode(byte_im)
+    return image_base64
     return send_file(image_jpg, mimetype='image/jpg')
 
 if __name__ == "__main__":
