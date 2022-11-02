@@ -2,10 +2,8 @@ import io
 import requests
 import torch
 import base64
-from base64 import b64encode, encodebytes
-import json
-from flask import Flask, jsonify, request, send_file
-from PIL import Image, ImageFile
+from flask import Flask, jsonify, request
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -16,9 +14,6 @@ model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
 
 @app.route('/predict', methods=["POST"])
 def predict():
-    if request.method != "POST":
-        return
-
     id_image = request.json['id']
     req = requests.get(apiUrl + '/radiographies/' + id_image)
     base64_data = req.content
@@ -29,7 +24,7 @@ def predict():
     results.save()
 
     image = Image.fromarray(results.ims[0])
-    ImageFile.MAXBLOCK = 2**20
+    
     buf = io.BytesIO()
     image.save(buf, 'JPEG', quality=80, optimize=True, progressive=True)
    
