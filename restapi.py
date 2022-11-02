@@ -2,6 +2,8 @@ import io
 import requests
 import torch
 import base64
+from base64 import b64encode, encodebytes
+import json
 from flask import Flask, jsonify, request, send_file
 from PIL import Image, ImageFile
 
@@ -30,11 +32,13 @@ def predict():
     ImageFile.MAXBLOCK = 2**20
     buf = io.BytesIO()
     image.save(buf, 'JPEG', quality=80, optimize=True, progressive=True)
-    image_jpg = 'output.jpg'
+   
     byte_im = buf.getvalue()
-    image_base64 = base64.b64encode(byte_im)
-    return image_base64
-    return send_file(image_jpg, mimetype='image/jpg')
+    byte_im = base64.encodebytes(byte_im).decode('ascii')
+    
+    return jsonify({
+        'image_base64': byte_im
+    })
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)  # debug=True causes Restarting with stat
