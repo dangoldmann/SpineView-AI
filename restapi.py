@@ -7,8 +7,8 @@ from PIL import Image
 
 app = Flask(__name__)
 
-apiUrl = 'http://localhost:3000'
-#apiUrl = 'https://osia-api-production.up.railway.app'
+#apiUrl = 'http://localhost:3000'
+apiUrl = 'https://osia-api-production.up.railway.app'
 
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
 
@@ -36,4 +36,4 @@ def predict():
     })
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=6000, debug=True)  # debug=True causes Restarting with stat
+    app.run(host="0.0.0.0", port=6000, debug=True)
