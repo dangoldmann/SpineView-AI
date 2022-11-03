@@ -7,8 +7,8 @@ from PIL import Image
 
 app = Flask(__name__)
 
-#apiUrl = 'http://localhost:3000'
-apiUrl = 'https://osia-api-production.up.railway.app'
+apiUrl = 'http://localhost:3000'
+#apiUrl = 'https://osia-api-production.up.railway.app'
 
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
 
