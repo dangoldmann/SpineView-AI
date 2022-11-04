@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 cloudinaryApiUrl = 'https://res.cloudinary.com/dmxn0qho3/image/upload'
 
-model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
+model = torch.hub.load('ultralytics/yolov5', 'custom', './best.pt')
 
 @app.route('/predict', methods=["POST"])
 def predict():
