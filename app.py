@@ -7,9 +7,6 @@ from PIL import Image
 
 app = Flask(__name__)
 
-apiUrl = 'http://localhost:3000'
-#apiUrl = 'https://osia-api-production.up.railway.app'
-
 cloudinaryApiUrl = 'https://res.cloudinary.com/dmxn0qho3/image/upload'
 
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
