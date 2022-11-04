@@ -10,12 +10,15 @@ app = Flask(__name__)
 apiUrl = 'http://localhost:3000'
 #apiUrl = 'https://osia-api-production.up.railway.app'
 
+cloudinaryApiUrl = 'https://res.cloudinary.com/dmxn0qho3/image/upload'
+
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
 
 @app.route('/predict', methods=["POST"])
 def predict():
-    id_image = request.json['id']
-    req = requests.get(apiUrl + '/radiographies/' + id_image)
+    image_path = request.json['imagePath']
+
+    req = requests.get(cloudinaryApiUrl + image_path)
     base64_data = req.content
     
     im = Image.open(io.BytesIO(base64_data))
