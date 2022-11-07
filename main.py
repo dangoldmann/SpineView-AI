@@ -9,7 +9,8 @@ from PIL import Image
 
 app = Flask(__name__)
 
-url = 'https://drive.google.com/uc?id=1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh&confirm=t&uuid=5b1e51c7-7e4c-4a37-b937-de6a74cebcea&at=ALAFpqxGvAxOVknbfjpFtQRAWhR-:1667841268655'
+url = 'https://drive.google.com/uc?export=download&confirm=9iBg&id=1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh'
+#url = 'https://drive.google.com/uc?id=1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh&confirm=t&uuid=5b1e51c7-7e4c-4a37-b937-de6a74cebcea&at=ALAFpqxGvAxOVknbfjpFtQRAWhR-:1667841268655'
 id = '1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh'
 output = 'test.pt'
 gdown.download(url, output, quiet=False)
