@@ -9,14 +9,14 @@ from PIL import Image
 
 app = Flask(__name__)
 
-url = 'https://drive.google.com/uc?export=download&confirm=yTib&id=1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh'
-id = '1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh'
-output = 'test.pt'
-gdown.download(url, output, quiet=False)
+# url = 'https://drive.google.com/uc?export=download&confirm=yTib&id=1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh'
+# id = '1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh'
+# output = 'test.pt'
+# gdown.download(url, output, quiet=False)
 
 cloudinaryApiUrl = 'https://res.cloudinary.com/dmxn0qho3/image/upload'
 
-model = torch.hub.load('ultralytics/yolov5', 'custom', 'test.pt', force_reload=True)
+model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt', force_reload=True)
 
 @app.route('/predict', methods=["POST"])
 def predict():
