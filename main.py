@@ -27,7 +27,7 @@ def predict():
     image = Image.fromarray(results.ims[0])
     
     buf = io.BytesIO()
-    image.save(buf, 'JPEG', quality=80, optimize=True, progressive=True)
+    image.save(buf, 'JPEG', quality=95, optimize=True, progressive=True)
    
     byte_im = buf.getvalue()
     byte_im = base64.encodebytes(byte_im).decode('ascii')
