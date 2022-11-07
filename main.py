@@ -2,15 +2,20 @@ import io
 import os
 import requests
 import torch
+import gdown
 import base64
 from flask import Flask, jsonify, request
 from PIL import Image
 
 app = Flask(__name__)
 
+id = '1Q-bRFUPT-qTANocqYelWThNMX6VNQsSh'
+output = 'test.pt'
+gdown.download(id=id, output=output, quiet=False)
+
 cloudinaryApiUrl = 'https://res.cloudinary.com/dmxn0qho3/image/upload'
 
-model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt', force_reload=True)
+model = torch.hub.load('ultralytics/yolov5', 'custom', 'test.pt', force_reload=True)
 
 @app.route('/predict', methods=["POST"])
 def predict():
