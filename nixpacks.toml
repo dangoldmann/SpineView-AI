@@ -1,0 +1,5 @@
+[phases.setup]
+gitPkgs = ["...", "git lfs"]
+
+[phases.build]
+cmds = ['yarn run build']
