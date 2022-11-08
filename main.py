@@ -22,7 +22,7 @@ def home():
 
 @app.route('/predict', methods=["POST"])
 def predict():
-    model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
+    model = torch.hub.load('ultralytics/yolov5', 'custom', path='./best.pt')
     image_path = request.json['imagePath']
 
     req = requests.get(cloudinaryApiUrl + image_path)
