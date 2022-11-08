@@ -16,11 +16,10 @@ gdown.download(url, output, quiet=False)
 
 cloudinaryApiUrl = 'https://res.cloudinary.com/dmxn0qho3/image/upload'
 
-model = torch.hub.load('ultralytics/yolov5', 'custom', 'test.pt')
-
 
 @app.route('/predict', methods=["POST"])
 def predict():
+    model = torch.hub.load('ultralytics/yolov5', 'custom', 'test.pt')
     image_path = request.json['imagePath']
 
     req = requests.get(cloudinaryApiUrl + image_path)
