@@ -9,17 +9,20 @@ from PIL import Image
 
 app = Flask(__name__)
 
-url = 'https://drive.google.com/uc?export=download&confirm=9iBg&id=195yn1JsrNMlzqTxwKXc3ywmC9LixSEm9'
-id = '195yn1JsrNMlzqTxwKXc3ywmC9LixSEm9'
-output = 'test.pt'
-gdown.download(url, output, quiet=False)
+# url = 'https://drive.google.com/uc?export=download&confirm=9iBg&id=195yn1JsrNMlzqTxwKXc3ywmC9LixSEm9'
+# id = '195yn1JsrNMlzqTxwKXc3ywmC9LixSEm9'
+# output = 'test.pt'
+# gdown.download(url, output, quiet=False)
 
 cloudinaryApiUrl = 'https://res.cloudinary.com/dmxn0qho3/image/upload'
 
+@app.route('/', methods=["GET"])
+def home():
+    return 'Home'
 
 @app.route('/predict', methods=["POST"])
 def predict():
-    model = torch.hub.load('ultralytics/yolov5', 'custom', 'test.pt')
+    model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
     image_path = request.json['imagePath']
 
     req = requests.get(cloudinaryApiUrl + image_path)
