@@ -43,7 +43,7 @@ def predict():
     
     return jsonify({
         'image_base64': byte_im
-    })
+    }) 
 
 if __name__ == "__main__":
     app.run(port=os.getenv("PORT", default=5000), debug=True)
